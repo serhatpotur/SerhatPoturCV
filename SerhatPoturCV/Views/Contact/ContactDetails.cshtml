@@ -1,0 +1,28 @@
+﻿@model SerhatPoturCV.Models.Entity.Contacts
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ContactDetails</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="container mb-3">
+        @Model.Name @Model.Surname
+        @Model.Mail
+        @Model.Subject
+        @Model.Message
+
+        <a href="/Contact/Index/" class="btn btn-danger" >Geri Dön</a>
+
+
+    </div>
+</body>
+</html>

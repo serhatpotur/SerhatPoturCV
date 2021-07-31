@@ -1,0 +1,84 @@
+﻿@model SerhatPoturCV.Models.Entity.Abouts
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UpdateAbout</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    @using (Html.BeginForm("UpdateAbout", "About", FormMethod.Post))
+    {
+        @Html.ValidationSummary(null, new { @class = "text-danger" })
+        @Html.HiddenFor(m => m.AboutID)
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, "Ad", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Surname, "Soyad", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Surname)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Phone, "Tel No", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Phone)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Job, "Job", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Job, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Job)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Dateofbirth, "Dateofbirth", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Dateofbirth, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Dateofbirth)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description1, "Description", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(m => m.Description1, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Description1)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Mail, "Mail", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Mail)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Image, "Image", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Image, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Image)
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+            <a href="/About/AboutMe/" class="btn btn-danger">Listeye Dön</a>
+        </div>
+
+    }
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿@model SerhatPoturCV.Models.Entity.Skills
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddSkill</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    @using (Html.BeginForm("AddSkill", "Skill", FormMethod.Post))
+    {
+        @Html.ValidationSummary(null, new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.SkillName, "SkillName", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.SkillName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.SkillName)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.SkillValue, "SkillValue", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.SkillValue, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.SkillValue)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+            <a href="/Skill/Index/" class="btn btn-danger">Listeye Dön</a>
+        </div>
+
+    }
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿@using SerhatPoturCV.Models.Entity
+@model List<Abouts>
+@{
+    ViewBag.Title = "AboutMe";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddAbout</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <a href="/About/AddAbout/" class="btn btn-success">Yeni Giriş</a>
+    <div class="container mb-3">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Phone</th>
+                    <th>DateofBirth</th>
+                    <th>Mail</th>
+                    <th>Image</th>
+                    <th>Job</th>
+                    <th>Description</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Surname</td>
+                        <td>@item.Phone</td>
+                        <td>@item.Dateofbirth</td>
+                        <td>@item.Mail</td>
+                        <td>@item.Image</td>
+                        <td>@item.Job</td>
+                        <td>@item.Description1.Substring(0, 10)</td>
+                        <td>
+                            <a href="/About/DeleteAbout/@item.AboutID" class="btn btn-danger">Sil</a>
+                            <a href="/About/UpdateAbout/@item.AboutID" class="btn btn-warning">Güncelle</a>
+
+
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
