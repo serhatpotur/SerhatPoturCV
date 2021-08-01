@@ -1,4 +1,5 @@
-﻿using SerhatPoturCV.Models.Entity;
+﻿using Newtonsoft.Json;
+using SerhatPoturCV.Models.Entity;
 using SerhatPoturCV.Repositories;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,20 @@ namespace SerhatPoturCV.Controllers
             skillRepository.Add(skills);
             return RedirectToAction("Index");
         }
+
+        public ActionResult AddSkillPartial()
+        {
+
+            return PartialView();
+        }
+
+        public ActionResult UpdateSkillPartial(int id)
+        {
+            var skill = skillRepository.GetById(id);
+
+            return PartialView(skill);
+        }
+       
         public ActionResult DeleteSkill(int id)
         {
             var skill = skillRepository.GetById(id);

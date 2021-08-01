@@ -23,7 +23,5 @@ namespace SerhatPoturCV.Models.Entity
         public byte[] Altresim { get; set; }
         public Nullable<int> fk_katId { get; set; }
         public Nullable<bool> IsActive { get; set; }
-    
-        public virtual Kategori Kategori { get; set; }
     }
 }

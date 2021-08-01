@@ -5,14 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 
 using SerhatPoturCV.Models.Entity;
+using SerhatPoturCV.Repositories;
+
 namespace SerhatPoturCV.Controllers
 {
     public class HomeController : Controller
     {
+        AboutRepository aboutRepository = new AboutRepository(new SerhatPoturCVEntities());
         SerhatPoturCVEntities entities = new SerhatPoturCVEntities();
         public ActionResult Index()
         {
-            var abouts = entities.Abouts.SingleOrDefault();
+            var abouts = aboutRepository.GetEntity();
             return View(abouts);
         }
 
@@ -28,21 +31,15 @@ namespace SerhatPoturCV.Controllers
             DateTime d2 = Convert.ToDateTime("1998-05-24");
             TimeSpan snc = d1 - d2;
             ViewBag.Age = snc;
-            var abouts = entities.Abouts.ToList();
+            var abouts = aboutRepository.AboutList();
             return PartialView(abouts);
         }
-        public PartialViewResult WorkingHistory()
-        {
-            return PartialView();
-        }
+       
         public PartialViewResult Projects()
         {
             return PartialView();
         }
-        public PartialViewResult Contact()
-        {
-            return PartialView();
-        }
+       
         public PartialViewResult MySkills()
         {
             

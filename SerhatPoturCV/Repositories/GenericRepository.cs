@@ -11,7 +11,7 @@ namespace SerhatPoturCV.Repositories
     {
         //SerhatPoturCVEntities context = new SerhatPoturCVEntities();
         protected readonly SerhatPoturCVEntities _context;
-        private readonly DbSet<TEntity> _dbSet;
+        protected readonly DbSet<TEntity> _dbSet;
         public GenericRepository(SerhatPoturCVEntities context)
         {
             _context = context;
@@ -20,6 +20,10 @@ namespace SerhatPoturCV.Repositories
         public List<TEntity> GetList()
         {
             return _dbSet.ToList();
+        }
+        public TEntity GetEntity()
+        {
+            return _dbSet.FirstOrDefault();
         }
         public void Add(TEntity entity)
         {

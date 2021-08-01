@@ -10,12 +10,19 @@ namespace SerhatPoturCV.Controllers
     public class ContactController : Controller
     {
         ContactRepository contactRepository = new ContactRepository(new SerhatPoturCVEntities());
+        AboutRepository aboutRepository = new AboutRepository(new SerhatPoturCVEntities());
         // GET: Contact
        
         public ActionResult Index()
         {
             var contact = contactRepository.GetList();
             return View(contact);
+        }
+        public PartialViewResult Contact()
+        {
+            var mail = aboutRepository.GetEntity();
+            ViewBag.mail = mail.Mail;
+            return PartialView();
         }
         public ActionResult ContactDetails(int id)
         {

@@ -9,7 +9,7 @@ namespace SerhatPoturCV.Controllers
 {
     public class AboutController : Controller
     {
-
+       
         AboutRepository aboutRepository = new AboutRepository(new SerhatPoturCVEntities());
         // GET: About
         public ActionResult AboutMe()

@@ -1,84 +1,112 @@
 ﻿@model SerhatPoturCV.Models.Entity.Abouts
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>UpdateAbout</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="col-md-3">
 
-</head>
-<body>
-    @using (Html.BeginForm("UpdateAbout", "About", FormMethod.Post))
-    {
-        @Html.ValidationSummary(null, new { @class = "text-danger" })
-        @Html.HiddenFor(m => m.AboutID)
-        <div class="form-group">
-            @Html.LabelFor(m => m.Name, "Ad", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Name)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Surname, "Soyad", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Surname)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Phone, "Tel No", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Phone)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Job, "Job", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Job, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Job)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Dateofbirth, "Dateofbirth", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Dateofbirth, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Dateofbirth)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Description1, "Description", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(m => m.Description1, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Description1)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Mail, "Mail", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Mail)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Image, "Image", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Image, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Image)
-            </div>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Güncelle</button>
-            <a href="/About/AboutMe/" class="btn btn-danger">Listeye Dön</a>
-        </div>
+    <!-- Profile Image -->
+    <div class="card card-primary card-outline">
+        <div class="card-body box-profile">
+            <div class="text-center">
+                <img class="profile-user-img img-fluid img-circle w-75"
+                     src="~/themes/Personal/assets/img/pp.jpeg"
+                     alt="User profile picture">
 
-    }
+            </div>
+            <div class="text-center">
+                <a href="#"> <i class="fas fa-camera fa-2x"></i></a>
+            </div>
+            <h3 class="profile-username text-center">@Model.Name @Model.Surname</h3>
 
-</body>
-</html>
+            <p class="text-muted text-center">@Model.Job</p>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+</div>
+<!-- /.col -->
+<div class="col-md-9">
+    <div class="card">
+
+        <div class="card-body">
+            <div class="tab-content">
+                <!-- /.tab-pane -->
+                <div>
+                    @using (Html.BeginForm("UpdateAbout", "About", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.HiddenFor(x => x.AboutID)
+                        <div class="form-group row">
+                            @Html.Label("Adı", new { @class = "col-sm-2 col-form-label" })
+                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.Label("Soyadı", new { @class = "col-sm-2 col-form-label" })
+                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.Label("Telefon No", new { @class = "col-sm-2 col-form-label" })
+                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.Label("Doğum Tarihi", new { @class = "col-sm-2 col-form-label" })
+                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.Dateofbirth, new { @class = "form-control" })
+                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.Label("mail", new { @class = "col-sm-2 col-form-label" })
+                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
+                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.Label("Meslek", new { @class = "col-sm-2 col-form-label" })
+                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.Job, new { @class = "form-control" })
+                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.Label("Açıklama", new { @class = "col-sm-2 col-form-label" })
+                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(m => m.Description1, new { @class = "form-control",@rows=4 })
+                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="offset-sm-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Güncelle</button>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div><!-- /.card-body -->
+    </div>
+    <!-- /.nav-tabs-custom -->
+</div>

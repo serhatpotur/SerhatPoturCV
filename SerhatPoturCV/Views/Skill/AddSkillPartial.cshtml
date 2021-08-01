@@ -1,0 +1,39 @@
+﻿@model SerhatPoturCV.Models.Entity.Skills
+@*<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Yetenek Girişi</button>*@
+<a href="/Skill/AddSkillPartial" data-toggle="modal" data-target="#Modal1">
+    <i class="fa fa-plus-circle fa-2x"></i>
+</a>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title text-center">Yetenek Girişi</h5>
+              
+                @*<a href="" class=font-weight-bolder> <span class="float-right">X</span></a>*@
+                <button class="close text-white" data-dismiss="modal">&times;</button>
+            </div>
+            @using (Html.BeginForm("AddSkill", "Skill", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        @Html.Label("Yetenek Adı", new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.SkillName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Yetenek Yüzdesi (%)", new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.SkillValue, new { @class = "form-control" })
+                    </div>
+
+                  
+                    <button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+

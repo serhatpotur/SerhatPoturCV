@@ -1,43 +1,49 @@
 ﻿@model SerhatPoturCV.Models.Entity.Skills
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
+@*<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Yetenek Girişi</button>*@
+@*<a href="/Skill/UpdateSkillPartial" data-toggle="modal" data-target="#Modal1">
+        <i class="fa fa-pencil-alt 2x"></i>
+    </a>*@
+<a class="btn btn-info btn-sm" href="/Skill/UpdateSkill/@Model.SkillID" data-toggle="modal" data-target="#Modal1">
+    <i class="fas fa-pencil-alt">
+    </i>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>UpdateSkill</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</a>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title text-center">Yetenek Girişi</h5>
 
-</head>
-<body>
-    @using (Html.BeginForm("UpdateSkill", "Skill", FormMethod.Post))
-    {
-        @Html.HiddenFor(m=>m.SkillID)
-        @Html.ValidationSummary(null, new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(m => m.SkillName, "SkillName", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.SkillName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.SkillName)
+                <a href="" class=font-weight-bolder> <span class="float-right">X</span></a>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.SkillValue, "SkillValue", new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.SkillValue, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.SkillValue)
-            </div>
-        </div>
+            @using (Html.BeginForm("UpdateSkill", "Skill", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    @Html.HiddenFor(m=>m.SkillID)
+                    <div class="form-group">
+                        @Html.Label("Yetenek Adı", new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.SkillName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Yetenek Yüzdesi (%)", new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.SkillValue, new { @class = "form-control" })
+                    </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Kaydet</button>
-            <a href="/Skill/Index/" class="btn btn-danger">Listeye Dön</a>
+
+                    <button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+
+                </div>
+            }
         </div>
+    </div>
+</div>
 
-    }
 
-</body>
-</html>
+
+
+
+

@@ -2,44 +2,103 @@
 @model List<Skills>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
+@{
+    string progressClass = "";
+    string badgeClass = "";
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="card w-100 m-3">
+    <div class="card-header">
+        <h3 class="card-title font-weight-bold ">Yeteneklerim</h3>
 
-</head>
-<body>
-    <a href="/Skill/AddSkill/" class="btn btn-success">Yeni Giriş</a>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus fa-2x"></i>
+            </button>
+            @Html.Action("AddSkillPartial")
 
-    <div class="container mb-3">
-        <table class="table table-bordered table-striped">
+
+            @*<a href="/Skill/AddSkillPartial" >
+                    <i class="fa fa-plus-circle fa-2x"></i>
+                </a>*@
+
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-striped table-bordered projects">
             <thead>
                 <tr>
-                    <th>SkillName</th>
-                    <th>SkillValue</th>
+                    <th class="w-25 text-center">
+                        Yetenek Adı
+                    </th>
 
-                    <th>İşlemler</th>
+                    <th class="w-25 text-center">
+                        Yetenek Progress
+                    </th>
+                    <th class="w-25 text-center">
+                        Yetenek Yüzde(%)
+                    </th>
+
+                    <th class="w-25 text-center">
+                        İşlemler
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
+                    if (Convert.ToInt32(item.SkillValue) <= 25)
+                    {
+                        progressClass = "progress-bar bg-red";
+                        badgeClass = "badge badge-danger";
+                    }
+                    else if (Convert.ToInt32(item.SkillValue) > 25 && Convert.ToInt32(item.SkillValue) <= 50)
+                    {
+                        progressClass = "progress-bar bg-yellow";
+                        badgeClass = "badge badge-warning";
+                    }
+                    else if (Convert.ToInt32(item.SkillValue) > 50 && Convert.ToInt32(item.SkillValue) <= 75)
+                    {
+                        progressClass = "progress-bar bg-green";
+                        badgeClass = "badge badge-success";
+                    }
+                    else if (Convert.ToInt32(item.SkillValue) > 75 && Convert.ToInt32(item.SkillValue) <= 100)
+                    {
+                        progressClass = "progress-bar bg-blue";
+                        badgeClass = "badge badge-primary";
+                    }
                     <tr>
-                        <td>@item.SkillName</td>
-                        <td>@item.SkillValue</td>
 
-                        <td>
-                            <a href="/Skill/DeleteSkill/@item.SkillID" class="btn btn-danger">Sil</a>
-                            <a href="/Skill/UpdateSkill/@item.SkillID" class="btn btn-warning">Güncelle</a>
+                        <th class="text-center">
+                            @item.SkillName
+                        </th>
 
+                        <td class="project_progress text-center">
+                            <div class="progress progress-md">
+                                <div class="@progressClass" role="progressbar" aria-volumenow="@item.SkillValue" aria-volumemin="0" aria-volumemax="100" style="width: @item.SkillValue%">
+                                </div>
+                            </div>
 
+                        </td>
+                        <td class=" text-center">
+                            <span style="font-size:18px" class="@badgeClass w-50 h-75">@item.SkillValue%</span>
+                        </td>
 
+                        <td class="project-actions text-center ">
+
+                           
+                            <a href="/Skill/UpdateSkillPartial/@item.SkillID" class="btn btn-info btn-sm">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                </a>
+                            <a class="btn btn-danger btn-sm" href="/Skill/DeleteSkill/@item.SkillID">
+                                <i class="fas fa-trash">
+                                </i>
+
+                            </a>
                         </td>
                     </tr>
                 }
@@ -47,5 +106,5 @@
             </tbody>
         </table>
     </div>
-</body>
-</html>
+</div>
+

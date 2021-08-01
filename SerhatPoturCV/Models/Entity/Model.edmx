@@ -25,7 +25,7 @@
             <PropertyRef Name="CareerID" />
           </Key>
           <Property Name="CareerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CompanyName" Type="nvarchar" MaxLength="10" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
           <Property Name="StartTime" Type="nvarchar" MaxLength="20" />
           <Property Name="EndTime" Type="nvarchar" MaxLength="20" />
           <Property Name="Position" Type="nvarchar" MaxLength="50" />
@@ -41,6 +41,20 @@
           <Property Name="Mail" Type="nvarchar" MaxLength="50" />
           <Property Name="Subject" Type="nvarchar" MaxLength="50" />
           <Property Name="Message" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Projeler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Baslık" Type="nvarchar" MaxLength="150" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Acıklama" Type="nvarchar(max)" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="Anaresim" Type="image" />
+          <Property Name="Altresim" Type="image" />
+          <Property Name="fk_katId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="Skills">
           <Key>
@@ -63,6 +77,7 @@
           <EntitySet Name="Abouts" EntityType="Self.Abouts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Careers" EntityType="Self.Careers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projeler" EntityType="Self.Projeler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SocialMedias" EntityType="Self.SocialMedias" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -90,7 +105,7 @@
             <PropertyRef Name="CareerID" />
           </Key>
           <Property Name="CareerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StartTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="EndTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -121,6 +136,7 @@
           <EntitySet Name="Contacts" EntityType="Self.Contacts" />
           <EntitySet Name="Skills" EntityType="Self.Skills" />
           <EntitySet Name="SocialMedias" EntityType="SerhatPoturCVModel.SocialMedias" />
+          <EntitySet Name="Projeler" EntityType="SerhatPoturCVModel.Projeler" />
         </EntityContainer>
         <EntityType Name="SocialMedias">
           <Key>
@@ -130,6 +146,20 @@
           <Property Name="MediaName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="MediaLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MediaClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Projeler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Baslık" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Acıklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="Anaresim" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Altresim" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="fk_katId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -193,6 +223,21 @@
                 <ScalarProperty Name="MediaLink" ColumnName="MediaLink" />
                 <ScalarProperty Name="MediaName" ColumnName="MediaName" />
                 <ScalarProperty Name="MediaID" ColumnName="MediaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projeler">
+            <EntityTypeMapping TypeName="SerhatPoturCVModel.Projeler">
+              <MappingFragment StoreEntitySet="Projeler">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="fk_katId" ColumnName="fk_katId" />
+                <ScalarProperty Name="Altresim" ColumnName="Altresim" />
+                <ScalarProperty Name="Anaresim" ColumnName="Anaresim" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Acıklama" ColumnName="Acıklama" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Baslık" ColumnName="Baslık" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
