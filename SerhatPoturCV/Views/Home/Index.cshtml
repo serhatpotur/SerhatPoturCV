@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Personal Bootstrap Template</title>
+    <title>Serhat Potur</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -45,14 +45,12 @@
 
 <body>
 
-
     <!-- ======= Header ======= -->
     <header id="header" class="header-tops">
         <div class="container">
 
             <h1><a href="Home/index/">@Model.Name @Model.Surname</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
+
             <h2><span>Merhaba! Kişisel Web Sayfama Hoşgeldin</span> </h2>
 
             <nav class="nav-menu d-none d-lg-block">
@@ -60,98 +58,25 @@
                     <li class="active"><a href="#header">Anasayfa</a></li>
                     <li><a href="#about">Hakkımda</a></li>
                     <li><a href="#resume">Çalışma Geçmişi</a></li>
-                    @*<li><a href="#services">Services</a></li>*@
-                    @*<li><a href="#portfolio">Projeler</a></li>*@
+
                     <li><a href="#contact">İletişim</a></li>
                 </ul>
             </nav><!-- .nav-menu -->
 
             <div class="social-links">
 
-                @Html.Action("Index", "SocialMedia")
-                @*<a href="#" class="icofont-instagram"></a>
-                    <a href="#" class="ri-github-fill"></a>
+                @Html.Action("MySocialMedia", "SocialMedia")
 
-                    <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>*@
             </div>
 
         </div>
-    </header><!-- End Header -->
-    <!-- ======= About Section ======= -->
-    @Html.Action("About")
-    <!-- End About Section -->
-    <!-- ======= Resume Section ======= -->
+    </header>
+
+    @Html.Action("MyAbout", "About")
+
     @Html.Action("WorkingHistory", "Career")
 
-    <!-- End Resume Section -->
-    <!-- ======= Services Section ======= -->
-    @*<section id="services" class="services">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2>Services</h2>
-                    <p>My Services</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                            <h4><a href="">Lorem Ipsum</a></h4>
-                            <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bx-file"></i></div>
-                            <h4><a href="">Sed ut perspiciatis</a></h4>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bx-tachometer"></i></div>
-                            <h4><a href="">Magni Dolores</a></h4>
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bx-world"></i></div>
-                            <h4><a href="">Nemo Enim</a></h4>
-                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bx-slideshow"></i></div>
-                            <h4><a href="">Dele cardo</a></h4>
-                            <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bx-arch"></i></div>
-                            <h4><a href="">Divera don</a></h4>
-                            <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>*@<!-- End Services Section -->
-    <!-- ======= Portfolio Section ======= -->
-    @*@Html.Action("Projects")*@
-
-    <!-- End Portfolio Section -->
-    <!-- ======= Contact Section ======= -->
-    @Html.Action("Contact","Contact")
+    @Html.Action("ContactMe", "Contact")
 
     <!-- End Contact Section -->
     <!-- Vendor JS Files -->

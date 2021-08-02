@@ -1,0 +1,63 @@
+﻿@model SerhatPoturCV.Models.Entity.Careers
+@{
+    ViewBag.Title = "UpdateCareer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="col-md-12 mt-3">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Yeni Kariyer Ekle</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("UpdateCareer", "Career", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m=>m.CareerID)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.CompanyName, "Firma Adı")
+                        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+                        @*<label for="inputName">Project Name</label>
+                        <input type="text" id="inputName" class="form-control">*@
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Position, "Pozisyon")
+                        @Html.TextBoxFor(m => m.Position, new { @class = "form-control" })
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(m => m.StartTime, "Başlangıç Tarihi")
+                            @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(m => m.EndTime, "Bitiş Tarihi")
+                            @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description, "Açıklama")
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = 4 })
+
+                    </div>
+
+                    <div class="form-group float-right">
+
+                        <a href="#" class="btn btn-danger">Vazgeç</a>
+                        <input type="submit" value="Kaydet" class="btn btn-success">
+
+                    </div>
+                }
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+

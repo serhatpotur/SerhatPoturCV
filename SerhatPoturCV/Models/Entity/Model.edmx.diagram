@@ -4,13 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0947e1111010489fa5f74c0a97328cde" Name="Diagram1">
+      <Diagram DiagramId="22ab5e0ee7584ebcbebdce92201fdc06" Name="Diagram1">
         <EntityTypeShape EntityType="SerhatPoturCVModel.Abouts" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SerhatPoturCVModel.Careers" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SerhatPoturCVModel.Contacts" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SerhatPoturCVModel.Skills" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SerhatPoturCVModel.SocialMedias" Width="1.5" PointX="5.375" PointY="3.75" />
-        <EntityTypeShape EntityType="SerhatPoturCVModel.Projeler" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SerhatPoturCVModel.SocialMedias" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

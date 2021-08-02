@@ -1,0 +1,44 @@
+﻿@model SerhatPoturCV.Models.Entity.SocialMedias
+@*<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Yetenek Girişi</button>*@
+<a href="/SocialMedia/AddMediaPartial" data-toggle="modal" data-target="#Modal1">
+    <i class="fa fa-plus-circle fa-2x"></i>
+</a>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title text-center">Sosyal Medya Ekle</h5>
+
+                @*<a href="" class=font-weight-bolder> <span class="float-right">X</span></a>*@
+                <button class="close text-white" data-dismiss="modal">&times;</button>
+            </div>
+            @using (Html.BeginForm("AddSocialMedia", "SocialMedia", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        @Html.Label("Sosyal Medya Adı", new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.MediaName, new {@placeholder="Instagram", @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Sosyal Medya Linki", new { @class = "control-label"})
+                        @Html.TextBoxFor(m => m.MediaLink, new { @placeholder = "www.serhatpoturcv.com", @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Icon Class", new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.MediaClass, new {@placeholder= "icofont-instagram", @class = "form-control" })
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary btn-block">Ekle</button>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

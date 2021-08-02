@@ -14,12 +14,46 @@ namespace SerhatPoturCV.Controllers
         // GET: Career
         public ActionResult Index()
         {
-            return View();
+            var careers = careerRepository.GetList();
+            return View(careers);
         }
+        [AllowAnonymous]
         public PartialViewResult WorkingHistory()
         {
             var career = careerRepository.GetList();
             return PartialView(career);
         }
+        [HttpGet]
+        public ActionResult AddCareer()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddCareer(Careers career)
+        {
+            careerRepository.Add(career);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult UpdateCareer(int id)
+        {
+            var career = careerRepository.GetById(id);
+            return View(career);
+        }
+        [HttpPost]
+        public ActionResult UpdateCareer(Careers career)
+        {
+            careerRepository.Update(career);
+            return RedirectToAction("Index");
+        }
+        public ActionResult DeleteCareer(int id)
+        {
+            var career = careerRepository.GetById(id);
+            careerRepository.Delete(career);
+            return RedirectToAction("Index");
+        }
+        
+
     }
 }

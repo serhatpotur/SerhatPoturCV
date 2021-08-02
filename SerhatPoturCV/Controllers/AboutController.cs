@@ -5,11 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SerhatPoturCV.Models.Entity;
+using System.IO;
+
 namespace SerhatPoturCV.Controllers
 {
     public class AboutController : Controller
     {
-       
+        string imgUrl;
+
         AboutRepository aboutRepository = new AboutRepository(new SerhatPoturCVEntities());
         // GET: About
         public ActionResult AboutMe()
@@ -17,6 +20,18 @@ namespace SerhatPoturCV.Controllers
             var about = aboutRepository.GetList();
             return View(about);
         }
+        [AllowAnonymous]
+        public PartialViewResult MyAbout()
+        {
+            TimeSpan age = new TimeSpan();
+            DateTime now = DateTime.Parse(DateTime.Now.ToShortDateString());
+            DateTime dateofbirth = Convert.ToDateTime("1998-05-24");
+            age = (now - dateofbirth);
+            ViewBag.Age = (age.Days / 365).ToString();
+            var abouts = aboutRepository.AboutList();
+            return PartialView(abouts);
+        }
+
         [HttpGet]
         public ActionResult AddAbout()
         {
@@ -25,8 +40,18 @@ namespace SerhatPoturCV.Controllers
         }
         [HttpPost]
 
-        public ActionResult AddAbout(Abouts abouts)
+        public ActionResult AddAbout(Abouts abouts, HttpPostedFileBase file)
         {
+            if (file != null && file.ContentLength > 0)
+            {
+                string _FileName = Path.GetFileName(file.FileName);
+                string randomFileName = string.Format(@"{0}.jpg", Guid.NewGuid());
+                string _path = Path.Combine(Server.MapPath("~/Images"), randomFileName);
+                file.SaveAs(_path);
+                abouts.Image = "/Images/" + randomFileName;
+                
+            }
+            imgUrl = abouts.Image;
             aboutRepository.Add(abouts);
             return RedirectToAction("AboutMe");
         }
@@ -44,8 +69,20 @@ namespace SerhatPoturCV.Controllers
         }
         [HttpPost]
 
-        public ActionResult UpdateAbout(Abouts abouts)
+        public ActionResult UpdateAbout(Abouts abouts,HttpPostedFileBase file)
         {
+            if (file != null && file.ContentLength > 0)
+            {
+                string _FileName = Path.GetFileName(file.FileName);
+                string randomFileName =  string.Format(@"{0}.jpg", Guid.NewGuid());
+                string _path = Path.Combine(Server.MapPath("~/Images"), randomFileName);
+                file.SaveAs(_path);
+                abouts.Image = "/Images/" + randomFileName;
+            }
+            else
+            {
+                abouts.Image = imgUrl;
+            }
             aboutRepository.Update(abouts);
             return RedirectToAction("AboutMe");
         }

@@ -2,58 +2,65 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
-<div class="col-md-3">
 
-    <!-- Profile Image -->
-    <div class="card card-primary card-outline">
-        <div class="card-body box-profile">
-            <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle w-75"
-                     src="~/themes/Personal/assets/img/pp.jpeg"
-                     alt="User profile picture">
-
-            </div>
-            <div class="text-center">
-                <a href="#"> <i class="fas fa-camera fa-2x"></i></a>
-            </div>
-            <h3 class="profile-username text-center">@Model.Name @Model.Surname</h3>
-
-            <p class="text-muted text-center">@Model.Job</p>
-        </div>
-        <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-
-</div>
-<!-- /.col -->
-<div class="col-md-9">
-    <div class="card">
+    <div class="card w-100 mt-1">
 
         <div class="card-body">
             <div class="tab-content">
                 <!-- /.tab-pane -->
-                <div>
-                    @using (Html.BeginForm("UpdateAbout", "About", FormMethod.Post, new { @class = "form-horizontal" }))
-                    {
+                @*<div class="card-body box-profile">*@
+                @using (Html.BeginForm("UpdateAbout", "About", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                {
+                    <div class="float-left col-md-4">
+                        <div class="text-center">
+                            @*img-fluid img-thumbnail img-circle w-25*@
+                            @*~/Image/@Model.Image*@
+                            <img id="resim" class=" profile-user-img img-fluid img-circle  "
+                                 src="@Model.Image"
+                                 alt="User profile picture">
+                        </div>
+                        <div class="text-center mb-2">
+                            @*<input type="file" name="file" style="display:normal " class="fas fa-camera fa-2x" />*@
+                            <input style="display:none;" name="file" id="dosya" type="file" ClientIDMode="Static" onchange="$('#resim')[0].src = window.URL.createObjectURL(this.files[0])" CssClass="form-control" runat="server" />
+                            <label for="dosya"><i class="fas fa-camera fa-2x"></i></label>
+
+                            @*<i class="fas fa-camera fa-2x"></i>*@
+                        </div>
+                    </div>
+
+
+                    <div class="float-right col-md-8">
+
                         @Html.HiddenFor(x => x.AboutID)
+
                         <div class="form-group row">
                             @Html.Label("Adı", new { @class = "col-sm-2 col-form-label" })
-                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+
                             <div class="col-sm-10">
                                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
+
                             </div>
                         </div>
                         <div class="form-group row">
                             @Html.Label("Soyadı", new { @class = "col-sm-2 col-form-label" })
-                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+
                             <div class="col-sm-10">
                                 @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
-                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
+
                             </div>
                         </div>
+                        <div class="form-group row">
+                            @Html.Label("Şifre", new { @class = "col-sm-2 col-form-label" })
+
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             @Html.Label("Telefon No", new { @class = "col-sm-2 col-form-label" })
                             @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
@@ -90,23 +97,23 @@
                             @Html.Label("Açıklama", new { @class = "col-sm-2 col-form-label" })
                             @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
                             <div class="col-sm-10">
-                                @Html.TextAreaFor(m => m.Description1, new { @class = "form-control",@rows=4 })
+                                @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
                                 @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="offset-sm-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Güncelle</button>
-                            </div>
+                            <div class="col-sm-6">  <a href="/About/AboutMe/" class="btn btn-danger btn-block">Vazgeç</a></div>
+                            <div class="col-sm-6"><button type="submit" class="btn btn-primary btn-block">Oluştur</button></div>
+
+
+
                         </div>
+                    </div>
+                }
 
-                    }
-
-                </div>
-                <!-- /.tab-pane -->
             </div>
+            <!-- /.tab-pane -->
+            @*</div>*@
             <!-- /.tab-content -->
         </div><!-- /.card-body -->
     </div>
-    <!-- /.nav-tabs-custom -->
-</div>

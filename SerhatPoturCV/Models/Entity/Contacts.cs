@@ -20,5 +20,6 @@ namespace SerhatPoturCV.Models.Entity
         public string Mail { get; set; }
         public string Subject { get; set; }
         public string Message { get; set; }
+        public Nullable<System.DateTime> MessageDate { get; set; }
     }
 }

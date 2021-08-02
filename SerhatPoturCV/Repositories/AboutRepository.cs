@@ -21,5 +21,9 @@ namespace SerhatPoturCV.Repositories
         {
             return _dbSet.Where(x => x.AboutID == 1).ToList();
         }
+        public Abouts GetByUser(string mail,string password)
+        {
+            return _dbSet.FirstOrDefault(x=>x.Mail==mail && x.Password==password);
+        }
     }
 }

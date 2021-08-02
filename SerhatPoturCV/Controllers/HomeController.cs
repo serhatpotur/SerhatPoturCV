@@ -9,48 +9,31 @@ using SerhatPoturCV.Repositories;
 
 namespace SerhatPoturCV.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         AboutRepository aboutRepository = new AboutRepository(new SerhatPoturCVEntities());
-        SerhatPoturCVEntities entities = new SerhatPoturCVEntities();
+        ContactRepository contactRepository = new ContactRepository(new SerhatPoturCVEntities());
         public ActionResult Index()
         {
             var abouts = aboutRepository.GetEntity();
             return View(abouts);
         }
 
-        public ActionResult About2()
+        public PartialViewResult AdminSidebar()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-        public PartialViewResult About()
-        {
-            DateTime d1 = DateTime.Parse(DateTime.Now.ToShortDateString());
-            DateTime d2 = Convert.ToDateTime("1998-05-24");
-            TimeSpan snc = d1 - d2;
-            ViewBag.Age = snc;
-            var abouts = aboutRepository.AboutList();
-            return PartialView(abouts);
-        }
-       
-        public PartialViewResult Projects()
-        {
+            var contact = contactRepository.GetList();
+            ViewBag.contactCount = contact.Count;
             return PartialView();
         }
+     
        
-        public PartialViewResult MySkills()
-        {
-            
-            var skills = entities.Skills.ToList();
-            return PartialView(skills);
-        }
-        public ActionResult Contactt()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+       
+     
+       
+      
+       
+       
+       
     }
 }

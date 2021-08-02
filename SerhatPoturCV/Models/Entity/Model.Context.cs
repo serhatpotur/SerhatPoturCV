@@ -30,6 +30,5 @@ namespace SerhatPoturCV.Models.Entity
         public virtual DbSet<Contacts> Contacts { get; set; }
         public virtual DbSet<Skills> Skills { get; set; }
         public virtual DbSet<SocialMedias> SocialMedias { get; set; }
-        public virtual DbSet<Projeler> Projeler { get; set; }
     }
 }

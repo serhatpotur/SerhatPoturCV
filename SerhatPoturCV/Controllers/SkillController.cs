@@ -64,5 +64,12 @@ namespace SerhatPoturCV.Controllers
             skillRepository.Update(skills);
             return RedirectToAction("Index");
         }
+        [AllowAnonymous]
+        public PartialViewResult MySkills()
+        {
+
+            var skills = skillRepository.GetList();
+            return PartialView(skills);
+        }
     }
 }

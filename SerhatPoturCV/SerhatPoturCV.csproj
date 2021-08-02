@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CareerController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -163,9 +164,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entity\Projeler.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Entity\Skills.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -189,10 +187,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\default.jpg" />
+    <Content Include="Images\pp1.jpg" />
     <Content Include="Models\Entity\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
       <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Entity\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2052,6 +2052,40 @@
     <Content Include="themes\AdminLTE\plugins\toastr\toastr.min.css" />
     <Content Include="themes\AdminLTE\plugins\toastr\toastr.min.js" />
     <Content Include="themes\AdminLTE\starter.html" />
+    <Content Include="themes\login\bootstrap\bootstrap-theme.css" />
+    <Content Include="themes\login\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="themes\login\bootstrap\bootstrap.css" />
+    <Content Include="themes\login\bootstrap\bootstrap.min.css" />
+    <Content Include="themes\login\css\style.css" />
+    <Content Include="themes\login\fonts\material-icon\css\material-design-iconic-font.css" />
+    <Content Include="themes\login\fonts\material-icon\css\material-design-iconic-font.min.css" />
+    <Content Include="themes\login\fonts\material-icon\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-300.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-300italic.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-500.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-500italic.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-600.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-700.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-700italic.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-800.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-800italic.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-900.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-italic.svg" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-regular.svg" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-700.svg" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-700italic.svg" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-italic.svg" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-regular.svg" />
+    <Content Include="themes\login\images\1.jpeg" />
+    <Content Include="themes\login\images\2.jpg" />
+    <Content Include="themes\login\images\9.jpg" />
+    <Content Include="themes\login\images\signin-image.jpg" />
+    <Content Include="themes\login\images\signup-image.jpg" />
+    <Content Include="themes\login\index.html" />
+    <Content Include="themes\login\js\main.js" />
+    <Content Include="themes\login\readme.txt" />
+    <Content Include="themes\login\vendor\jquery\jquery-ui.min.js" />
+    <Content Include="themes\login\vendor\jquery\jquery.min.js" />
     <Content Include="themes\Personal\assets\css\cvstyle.css" />
     <Content Include="themes\Personal\assets\css\style.css" />
     <Content Include="themes\Personal\assets\img\1.jpeg" />
@@ -2077,6 +2111,7 @@
     <Content Include="themes\Personal\assets\img\portfolio\portfolio-details-2.jpg" />
     <Content Include="themes\Personal\assets\img\portfolio\portfolio-details-3.jpg" />
     <Content Include="themes\Personal\assets\img\pp.jpeg" />
+    <Content Include="themes\Personal\assets\img\pp1.jpg" />
     <Content Include="themes\Personal\assets\img\testimonials\testimonials-1.jpg" />
     <Content Include="themes\Personal\assets\img\testimonials\testimonials-2.jpg" />
     <Content Include="themes\Personal\assets\img\testimonials\testimonials-3.jpg" />
@@ -2168,10 +2203,10 @@
     <Content Include="themes\Personal\assets\vendor\remixicon\remixicon.woff" />
     <Content Include="themes\Personal\assets\vendor\remixicon\remixicon.woff2" />
     <Content Include="Views\About\AboutMe.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\About\MyAbout.cshtml" />
     <Content Include="Views\Career\WorkingHistory.cshtml" />
-    <Content Include="Views\Contact\Contact.cshtml" />
-    <Content Include="Views\Home\MySkills.cshtml" />
+    <Content Include="Views\Contact\ContactMe.cshtml" />
+    <Content Include="Views\Skill\MySkills.cshtml" />
     <Content Include="Views\About\AddAbout.cshtml" />
     <Content Include="Views\About\UpdateAbout.cshtml" />
     <Content Include="Views\Skill\Index.cshtml" />
@@ -2179,7 +2214,7 @@
     <Content Include="Views\Skill\UpdateSkill.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Contact\ContactDetails.cshtml" />
-    <Content Include="Views\SocialMedia\Index.cshtml" />
+    <Content Include="Views\SocialMedia\MySocialMedia.cshtml" />
     <Content Include="themes\AdminLTE\.babelrc" />
     <Content Include="themes\AdminLTE\.browserslistrc" />
     <Content Include="themes\AdminLTE\.editorconfig" />
@@ -2439,6 +2474,110 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Skill\AddSkillPartial.cshtml" />
     <Content Include="Views\Skill\UpdateSkillPartial.cshtml" />
+    <Content Include="Views\Career\Index.cshtml" />
+    <Content Include="Views\Career\AddCareer.cshtml" />
+    <Content Include="Views\Career\UpdateCareer.cshtml" />
+    <Content Include="Views\SocialMedia\Index.cshtml" />
+    <Content Include="Views\SocialMedia\AddMediaPartial.cshtml" />
+    <Content Include="Views\Home\AdminSidebar.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="themes\login\.sass-cache\21880c0ffe15753a53f8402e9f64e1077e071510\style.scssc" />
+    <Content Include="themes\login\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\extend.scssc" />
+    <Content Include="themes\login\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\fonts.scssc" />
+    <Content Include="themes\login\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\global.scssc" />
+    <Content Include="themes\login\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\minxi.scssc" />
+    <Content Include="themes\login\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\variables.scssc" />
+    <Content Include="themes\login\.sass-cache\3948936f84e1a30385e73a9be140b58b48c82e15\style.scssc" />
+    <Content Include="themes\login\.sass-cache\643489b018602f15119d8f44aeb7fc79468873a9\main.scssc" />
+    <Content Include="themes\login\.sass-cache\643489b018602f15119d8f44aeb7fc79468873a9\responsive.scssc" />
+    <Content Include="themes\login\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\extend.scssc" />
+    <Content Include="themes\login\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\fonts.scssc" />
+    <Content Include="themes\login\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\global.scssc" />
+    <Content Include="themes\login\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\minxi.scssc" />
+    <Content Include="themes\login\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\variables.scssc" />
+    <Content Include="themes\login\.sass-cache\9dc767a56f3dc2f8a933300255cd2265f13191d4\main.scssc" />
+    <Content Include="themes\login\.sass-cache\9dc767a56f3dc2f8a933300255cd2265f13191d4\responsive.scssc" />
+    <Content Include="themes\login\css\style.css.map" />
+    <Content Include="themes\login\fonts\material-icon\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="themes\login\fonts\material-icon\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="themes\login\fonts\material-icon\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="themes\login\fonts\material-icon\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-300.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-300.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-300.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-300.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-300italic.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-300italic.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-300italic.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-300italic.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-500.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-500.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-500.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-500.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-500italic.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-500italic.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-500italic.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-500italic.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-600.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-600.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-600.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-600.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-700.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-700.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-700.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-700.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-700italic.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-700italic.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-700italic.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-700italic.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-800.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-800.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-800.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-800.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-800italic.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-800italic.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-800italic.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-800italic.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-900.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-900.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-900.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-900.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-italic.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-italic.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-italic.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-italic.woff2" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-regular.eot" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-regular.ttf" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-regular.woff" />
+    <Content Include="themes\login\fonts\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-700.eot" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-700.ttf" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-700.woff" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-700.woff2" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-700italic.eot" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-700italic.ttf" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-700italic.woff" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-700italic.woff2" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-italic.eot" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-italic.ttf" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-italic.woff" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-italic.woff2" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-regular.eot" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-regular.ttf" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-regular.woff" />
+    <Content Include="themes\login\fonts\poppins\roboto-condensed-v16-latin-regular.woff2" />
+    <Content Include="themes\login\scss\common\extend.scss" />
+    <Content Include="themes\login\scss\common\fonts.scss" />
+    <Content Include="themes\login\scss\common\global.scss" />
+    <Content Include="themes\login\scss\common\minxi.scss" />
+    <Content Include="themes\login\scss\common\variables.scss" />
+    <Content Include="themes\login\scss\layouts\main.scss" />
+    <Content Include="themes\login\scss\layouts\responsive.scss" />
+    <Content Include="themes\login\scss\style.scss" />
+    <Content Include="themes\login\bootstrap\bootstrap-theme.css.map" />
+    <Content Include="themes\login\bootstrap\bootstrap-theme.min.css.map" />
+    <Content Include="themes\login\bootstrap\bootstrap.css.map" />
+    <Content Include="themes\login\bootstrap\bootstrap.min.css.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

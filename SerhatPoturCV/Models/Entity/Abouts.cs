@@ -22,7 +22,7 @@ namespace SerhatPoturCV.Models.Entity
         public string Mail { get; set; }
         public string Job { get; set; }
         public string Image { get; set; }
-        public string Description1 { get; set; }
-        public string Description2 { get; set; }
+        public string Description { get; set; }
+        public string Password { get; set; }
     }
 }

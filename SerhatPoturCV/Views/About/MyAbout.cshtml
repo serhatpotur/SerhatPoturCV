@@ -14,7 +14,7 @@
             @foreach (var item in Model)
             {
                 <div class="col-lg-4" data-aos="fade-right">
-                    <img src="~/themes/Personal/assets/img/3.jpg" class="img-fluid" alt="">
+                    <img src="@item.Image" class="img-fluid" alt="@item.Image">
                 </div>
                 <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
                     <h3>@item.Job</h3>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <p>
-                        @item.Description1
+                        @item.Description
                     </p>
                 </div>
             }
@@ -51,7 +51,7 @@
     </div><!-- End About Me -->
    
     <!-- ======= Skills  ======= -->
-    @Html.Action("MySkills")
+    @Html.Action("MySkills","Skill")
 
     <!-- End Skills -->
 

@@ -1,0 +1,7 @@
+﻿@using SerhatPoturCV.Models.Entity
+@model List<SocialMedias>
+
+@foreach (var item in Model)
+{
+    <a href="https://@item.MediaLink" class="@item.MediaClass" target="_blank"></a>
+}
