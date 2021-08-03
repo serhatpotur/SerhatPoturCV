@@ -2,10 +2,45 @@
 @model List<Careers>
 
 @{
-    var skillCount = Model.OrderBy(x => x.StartTime).ToList();
-    var dgr = Convert.ToInt32(skillCount.Count / 2);
+    // For döngüsü ile ilgili kısım
+    var skillCount = Model.OrderBy(x => Convert.ToDateTime(x.StartTime)).ToList();
+    double newCount = skillCount.Count;
+    double dgr = Convert.ToDouble(newCount / 2);
+
+    dgr = Math.Ceiling(dgr);
+    int ydgr = Convert.ToInt32(dgr);
     var d2 = skillCount.Count;
+
+
+    // Liste
+
+    var present = Model.Where(x => x.EndTime == "Devam Ediyor").FirstOrDefault();
+    var careerList = Model.Where(x => x.EndTime != "Devam Ediyor").OrderBy(x => Convert.ToDateTime(x.StartTime)).ToList();
+
+    List<Careers> d = new List<Careers>();
+
+    if (present != null)
+    {
+        d.Add(present);
+        for (int i = 0; i < d2 - 1; i++)
+        {
+
+            d.Add(careerList[i]);
+
+        }
+    }
+    else
+    {
+        for (int i = 0; i < d2; i++)
+        {
+
+            d.Add(careerList[i]);
+
+        }
+    }
 }
+
+
 
 <section id="resume" class="resume">
     <div class="container">
@@ -19,12 +54,14 @@
             <div class="col-lg-6">
                 @for (int i = 0; i < dgr; i++)
                 {
-                    <div class="resume-item">
-                        <h4>@Model[i].CompanyName</h4>
-                        <h5> @Model[i].Position</h5> <br />
 
-                        <h5>@Model[i].StartTime - @Model[i].EndTime</h5>
-                        <p>@Model[i].Description</p>
+                    <div class="resume-item">
+                        <h4></h4>
+                        <h4>@d[i].CompanyName</h4>
+                        <h5> @d[i].Position</h5> <br />
+
+                        <h5>@d[i].StartTime - @d[i].EndTime</h5>
+                        <p>@d[i].Description</p>
                     </div>
                     @*Alteratif
                               <div class="resume-item">
@@ -50,14 +87,15 @@
                     </div>*@
             </div>
             <div class="col-lg-6">
-                @for (int i = d2 - 1; i > dgr - 1; i--)
+                @*@for (int i = d2 - 1; i >= dgr; i--)*@
+                @for (int i = ydgr; i <= d2 - 1; i++)
                 {
                     <div class="resume-item">
-                        <h4>@Model[i].CompanyName</h4>
-                        <h5> @Model[i].Position</h5> <br />
+                        <h4>@d[i].CompanyName</h4>
+                        <h5> @d[i].Position</h5> <br />
 
-                        <h5>@Model[i].StartTime - @Model[i].EndTime</h5>
-                        <p>@Model[i].Description</p>
+                        <h5>@d[i].StartTime - @d[i].EndTime</h5>
+                        <p>@d[i].Description</p>
                     </div>
                 }
 

@@ -2,118 +2,139 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
 
-    <div class="card w-100 mt-1">
+<div class="card w-100 mt-1">
 
-        <div class="card-body">
-            <div class="tab-content">
-                <!-- /.tab-pane -->
-                @*<div class="card-body box-profile">*@
-                @using (Html.BeginForm("UpdateAbout", "About", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
-                {
-                    <div class="float-left col-md-4">
-                        <div class="text-center">
-                            @*img-fluid img-thumbnail img-circle w-25*@
-                            @*~/Image/@Model.Image*@
-                            <img id="resim" class=" profile-user-img img-fluid img-circle  "
-                                 src="@Model.Image"
-                                 alt="User profile picture">
-                        </div>
-                        <div class="text-center mb-2">
-                            @*<input type="file" name="file" style="display:normal " class="fas fa-camera fa-2x" />*@
-                            <input style="display:none;" name="file" id="dosya" type="file" ClientIDMode="Static" onchange="$('#resim')[0].src = window.URL.createObjectURL(this.files[0])" CssClass="form-control" runat="server" />
-                            <label for="dosya"><i class="fas fa-camera fa-2x"></i></label>
-
-                            @*<i class="fas fa-camera fa-2x"></i>*@
-                        </div>
-                    </div>
-
-
-                    <div class="float-right col-md-8">
-
-                        @Html.HiddenFor(x => x.AboutID)
-
-                        <div class="form-group row">
-                            @Html.Label("Adı", new { @class = "col-sm-2 col-form-label" })
-
-                            <div class="col-sm-10">
-                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            @Html.Label("Soyadı", new { @class = "col-sm-2 col-form-label" })
-
-                            <div class="col-sm-10">
-                                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            @Html.Label("Şifre", new { @class = "col-sm-2 col-form-label" })
-
-                            <div class="col-sm-10">
-                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            @Html.Label("Telefon No", new { @class = "col-sm-2 col-form-label" })
-                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
-                            <div class="col-sm-10">
-                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
-                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            @Html.Label("Doğum Tarihi", new { @class = "col-sm-2 col-form-label" })
-                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
-                            <div class="col-sm-10">
-                                @Html.TextBoxFor(m => m.Dateofbirth, new { @class = "form-control" })
-                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            @Html.Label("mail", new { @class = "col-sm-2 col-form-label" })
-                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
-                            <div class="col-sm-10">
-                                @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
-                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            @Html.Label("Meslek", new { @class = "col-sm-2 col-form-label" })
-                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
-                            <div class="col-sm-10">
-                                @Html.TextBoxFor(m => m.Job, new { @class = "form-control" })
-                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            @Html.Label("Açıklama", new { @class = "col-sm-2 col-form-label" })
-                            @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
-                            <div class="col-sm-10">
-                                @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
-                                @*<input type="email" class="form-control" id="inputName" placeholder="Name">*@
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6">  <a href="/About/AboutMe/" class="btn btn-danger btn-block">Vazgeç</a></div>
-                            <div class="col-sm-6"><button type="submit" class="btn btn-primary btn-block">Oluştur</button></div>
-
-
-
-                        </div>
-                    </div>
-                }
-
-            </div>
+    <div class="card-body">
+        <div class="tab-content">
             <!-- /.tab-pane -->
-            @*</div>*@
-            <!-- /.tab-content -->
-        </div><!-- /.card-body -->
+
+            @using (Html.BeginForm("UpdateAbout", "About", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+            {
+
+                @Html.HiddenFor(x => x.AboutID)
+                <div class="float-left col-md-4">
+                    <div class="text-center">
+                        @*img-fluid img-thumbnail img-circle w-25*@
+                        @*~/Image/@Model.Image*@
+                        <img id="resim" class=" profile-user-img img-fluid img-circle  "
+                             src="@Model.Image"
+                             alt="User profile picture">
+                    </div>
+                    <div class="text-center mb-2">
+                        @*<input type="file" name="file" style="display:normal " class="fas fa-camera fa-2x" />*@
+                        <input style="display:none;" name="file" id="dosya" type="file" ClientIDMode="Static" onchange="$('#resim')[0].src = window.URL.createObjectURL(this.files[0])" CssClass="form-control" runat="server" />
+                        <label for="dosya"><i class="fas fa-camera fa-2x"></i></label>
+
+                        @*<i class="fas fa-camera fa-2x"></i>*@
+                    </div>
+                </div>
+
+
+                <div class="float-right col-md-8">
+
+
+
+                    <div class="form-group row">
+                        @Html.Label("Adı", new { @class = "col-sm-2 col-form-label" })
+
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "User's Name" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.Label("Soyadı", new { @class = "col-sm-2 col-form-label" })
+
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", @placeholder = "User's Surname" })
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.Label("Şifre", new { @class = "col-sm-2 col-form-label" })
+
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "User's Password", @type = "password" })
+                            <input type="checkbox" id="showPass" /> &nbsp;<span>Şifre Göster</span>
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.Label("Telefon No", new { @class = "col-sm-2 col-form-label" })
+                        @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @placeholder = "User's Phone Number" })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.Label("Doğum Tarihi", new { @class = "col-sm-2 col-form-label" })
+                        @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Dateofbirth, "{0:dd-MM-yyyy}", new { @class = "form-control", @placeholder = "User's Date of Birth" })
+                            @Html.ValidationMessageFor(model => model.Dateofbirth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.Label("mail", new { @class = "col-sm-2 col-form-label" })
+                        @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Mail, new { @class = "form-control", @placeholder = "User's Mail" })
+                            @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.Label("Meslek", new { @class = "col-sm-2 col-form-label" })
+                        @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Job, new { @class = "form-control", @placeholder = "User's Job" })
+                            @Html.ValidationMessageFor(model => model.Job, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.Label("Açıklama", new { @class = "col-sm-2 col-form-label" })
+                        @*<label for="inputName" class="col-sm-2 col-form-label">Name</label>*@
+                        <div class="col-sm-10">
+                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = 4, @placeholder = "User's About" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">  <a href="/About/AboutMe/" class="btn btn-danger btn-block">Vazgeç</a></div>
+                        <div class="col-sm-6"><button type="submit" class="btn btn-success btn-block">Kaydet</button></div>
+
+
+
+                    </div>
+                </div>
+
+            }
+
+
+        </div>
+
+       
     </div>
+    <!-- /.card-body -->
+</div>
+<script>
+
+    $(function () {
+
+        $("#showPass").change(function () {
+            var checked = $(this).is(":checked");
+            if (checked) {
+                $("#Password").attr("type", "text");
+            } else {
+                $("#Password").attr("type", "password");
+            }
+        });
+
+    });
+</script>

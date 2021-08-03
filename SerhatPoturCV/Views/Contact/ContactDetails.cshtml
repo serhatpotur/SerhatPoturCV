@@ -10,7 +10,7 @@
 <div class="col-md-12 mt-1">
     <div class="card card-primary card-outline">
         <div class="card-header">
-            <h3 class="card-title">EMail Oku</h3>
+            <h3 class="card-title">Mail Oku</h3>
 
             <div class="card-tools">
                 <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Previous"><i class="fas fa-chevron-left"></i></a>
@@ -20,20 +20,23 @@
         <!-- /.card-header -->
         <div class="card-body p-0">
             <div class="mailbox-read-info">
-                <h5>@Model.Subject</h5>
-                <h6>
-                    Kimden: @Model.Name @Model.Surname - @Model.Mail
+                <h5> <b>Konu : </b>@Model.Subject</h5>
+                <h5>
+                    <b>Kimden: </b> @Model.Name @Model.Surname - @Model.Mail
                     <span class="mailbox-read-time float-right">@messageDate</span>
-                </h6>
+                </h5>
             </div>
             <!-- /.mailbox-read-info -->
             <div class="mailbox-controls with-border text-center">
                 <div class="btn-group">
-                    <a href="/Contact/Index/" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Reply">
+                    <a href="/Contact/Index/" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Geri Dön">
                         <i class="fas fa-reply"></i>
                     </a>
-                    <a href="/Contact/DeleteContact/@Model.ContactID" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
+                    <a href="/Contact/DeleteContact/@Model.ContactID" onclick="return confirm('Silmek İstediğinize Emin Misiniz ?')" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Sil">
                         <i class="far fa-trash-alt"></i>
+                    </a>
+                    <a href="/Contact/ReadContact/@Model.ContactID" onclick="return confirm('Okundu Olarak İşaretlemek İstediğinize Emin Misiniz ?')" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Okundu">
+                        <i class="fa fa-check"></i>
                     </a>
 
                 </div>
@@ -51,7 +54,8 @@
         <div class="card-footer">
             <div class="float-right">
                 <a href="/Contact/Index/" type="button" class="btn btn-default"><i class="fas fa-reply"></i> Geri Dön</a>
-                <a href="/Contact/DeleteContact/@Model.ContactID" type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Sil</a>
+                <a href="/Contact/DeleteContact/@Model.ContactID" onclick = "return confirm('Silmek İstediğinize Emin Misiniz ?')" type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Sil</a>
+                <a href="/Contact/ReadContact/@Model.ContactID" onclick = "return confirm('Okundu Olarak İşaretlemek İstediğinize Emin Misiniz ?')" type="button" class="btn btn-default"><i class="fa fa-check"></i> Okundu</a>
 
             </div>
 

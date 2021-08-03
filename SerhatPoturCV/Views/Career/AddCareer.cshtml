@@ -20,37 +20,37 @@
             {
                 <div class="form-group">
                     @Html.LabelFor(m => m.CompanyName, "Firma Adı")
-                    @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", @placeholder = "Company's Name" })
                     @*<label for="inputName">Project Name</label>
                 <input type="text" id="inputName" class="form-control">*@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Position, "Pozisyon")
-                    @Html.TextBoxFor(m => m.Position, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Position, new { @class = "form-control", @placeholder = "Your Company Position" })
 
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         @Html.LabelFor(m => m.StartTime, "Başlangıç Tarihi")
-                        @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control", @placeholder = "Date of Start" })
 
                     </div>
                     <div class="form-group col-md-6">
                         @Html.LabelFor(m => m.EndTime, "Bitiş Tarihi")
-                        @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control", @placeholder = "Job End Date or Devam Ediyor" })
 
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Description, "Açıklama")
-                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control",@rows=4 })
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control",@rows=4, @placeholder = "About work" })
 
                 </div>
              
                 <div class="form-group float-right">
 
-                    <a href="#" class="btn btn-danger">Vazgeç</a>
-                    <input type="submit" value="Ekle" class="btn btn-success">
+                    <a href="/Career/Index/" class="btn btn-danger">Vazgeç</a>
+                    <input type="submit" value="Ekle" class="btn btn-primary">
 
                 </div>
             }

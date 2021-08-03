@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using SerhatPoturCV.Models.Entity;
 using System.IO;
+using SerhatPoturCV.ValidationRules.FluentValidation;
+using FluentValidation.Results;
 
 namespace SerhatPoturCV.Controllers
 {
@@ -14,6 +16,7 @@ namespace SerhatPoturCV.Controllers
         string imgUrl;
 
         AboutRepository aboutRepository = new AboutRepository(new SerhatPoturCVEntities());
+        AboutValidator validations = new AboutValidator();
         // GET: About
         public ActionResult AboutMe()
         {
@@ -42,18 +45,34 @@ namespace SerhatPoturCV.Controllers
 
         public ActionResult AddAbout(Abouts abouts, HttpPostedFileBase file)
         {
-            if (file != null && file.ContentLength > 0)
+            ValidationResult results = validations.Validate(abouts);
+            if (results.IsValid)
             {
-                string _FileName = Path.GetFileName(file.FileName);
-                string randomFileName = string.Format(@"{0}.jpg", Guid.NewGuid());
-                string _path = Path.Combine(Server.MapPath("~/Images"), randomFileName);
-                file.SaveAs(_path);
-                abouts.Image = "/Images/" + randomFileName;
-                
+                if (file != null && file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string randomFileName = string.Format(@"{0}.jpg", Guid.NewGuid());
+                    string _path = Path.Combine(Server.MapPath("~/Images"), randomFileName);
+                    file.SaveAs(_path);
+                    abouts.Image = "/Images/" + randomFileName;
+
+                }
+                else
+                {
+                    abouts.Image = "/Images/default.jpg";
+                }
+                imgUrl = abouts.Image;
+                aboutRepository.Add(abouts);
+                return RedirectToAction("AboutMe");
             }
-            imgUrl = abouts.Image;
-            aboutRepository.Add(abouts);
-            return RedirectToAction("AboutMe");
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View();
+            }
         }
         public ActionResult DeleteAbout(int id)
         {
@@ -69,22 +88,35 @@ namespace SerhatPoturCV.Controllers
         }
         [HttpPost]
 
-        public ActionResult UpdateAbout(Abouts abouts,HttpPostedFileBase file)
+        public ActionResult UpdateAbout(Abouts abouts, HttpPostedFileBase file)
         {
-            if (file != null && file.ContentLength > 0)
+            ValidationResult results = validations.Validate(abouts);
+            if (results.IsValid)
             {
-                string _FileName = Path.GetFileName(file.FileName);
-                string randomFileName =  string.Format(@"{0}.jpg", Guid.NewGuid());
-                string _path = Path.Combine(Server.MapPath("~/Images"), randomFileName);
-                file.SaveAs(_path);
-                abouts.Image = "/Images/" + randomFileName;
+                if (file != null && file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string randomFileName = string.Format(@"{0}.jpg", Guid.NewGuid());
+                    string _path = Path.Combine(Server.MapPath("~/Images"), randomFileName);
+                    file.SaveAs(_path);
+                    abouts.Image = "/Images/" + randomFileName;
+                }
+                else
+                {
+                    abouts.Image = "/Images/default.jpg";
+                }
+                aboutRepository.Update(abouts);
+                return RedirectToAction("AboutMe");
             }
             else
             {
-                abouts.Image = imgUrl;
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View("UpdateAbout");
             }
-            aboutRepository.Update(abouts);
-            return RedirectToAction("AboutMe");
+
         }
     }
 }

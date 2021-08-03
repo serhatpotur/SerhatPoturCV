@@ -17,11 +17,11 @@
                 <div class="modal-body">
                     <div class="form-group">
                         @Html.Label("Yetenek Adı", new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.SkillName, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.SkillName, new { @class = "form-control", @placeholder = "Skill Name" })
                     </div>
                     <div class="form-group">
                         @Html.Label("Yetenek Yüzdesi (%)", new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.SkillValue, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.SkillValue, new { @class = "form-control", @placeholder = "Skill %" })
                     </div>
 
                   

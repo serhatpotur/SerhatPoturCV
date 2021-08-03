@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SerhatPoturCV.Models.Entity;
+using PagedList;
+using PagedList.Mvc;
 
 namespace SerhatPoturCV.Controllers
 {
@@ -12,9 +14,9 @@ namespace SerhatPoturCV.Controllers
     {
         CareerRepository careerRepository = new CareerRepository(new SerhatPoturCVEntities());
         // GET: Career
-        public ActionResult Index()
+        public ActionResult Index(int pageNumber=1)
         {
-            var careers = careerRepository.GetList();
+            var careers = careerRepository.GetList().ToPagedList(pageNumber,5);
             return View(careers);
         }
         [AllowAnonymous]
