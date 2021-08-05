@@ -1,25 +1,23 @@
 ﻿@using SerhatPoturCV.Models.Entity
 @model List<Contacts>
 @{
+    ViewBag.Title = "DeletedMessage";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-
 }
 
-    <div class="col-md-3 mt-2">
-       
 
-        @Html.Action("ContactSidebar")
-        <!-- /.card -->
-        
-        <!-- /.card -->
-    </div>
+<div class="col-md-3 mt-2">
 
+
+    @Html.Action("ContactSidebar")
+
+</div>
 <div class="col-md-9 mt-2">
     <div class="card card-primary card-outline">
-        @using (Html.BeginForm("Index", "Contact", FormMethod.Post))
+        @using (Html.BeginForm("DeletedMessage", "Contact", FormMethod.Post))
         {
             <div class="card-header">
-                <h3 class="card-title">Gelen Kutusu</h3>
+                <h3 class="card-title">Siliniş Mesajlar</h3>
 
                 <div class="card-tools">
                     <div class="input-group input-group-sm">
@@ -120,3 +118,4 @@
     </div>
     <!-- /.card -->
 </div>
+

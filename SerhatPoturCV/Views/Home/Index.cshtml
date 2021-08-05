@@ -49,15 +49,15 @@
     <header id="header" class="header-tops">
         <div class="container">
 
-            <h1><a href="Home/index/">@Model.Name @Model.Surname</a></h1>
+            <h1><a href="/Home/Index/">@Model.Name @Model.Surname</a></h1>
 
-            <h2><span>Merhaba! Kişisel Web Sayfama Hoşgeldin</span> </h2>
+            <h2><span>Merhaba ! Kişisel Web Sayfama Hoşgeldiniz</span> </h2>
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="active"><a href="#header">Anasayfa</a></li>
                     <li><a href="#about">Hakkımda</a></li>
-                    <li><a href="#resume">Çalışma Geçmişi</a></li>
+                    <li><a href="#resume">Çalışma Geçmişim</a></li>
 
                     <li><a href="#contact">İletişim</a></li>
                 </ul>
@@ -77,6 +77,10 @@
     @Html.Action("WorkingHistory", "Career")
 
     @Html.Action("ContactMe", "Contact")
+    <div class="credits">
+
+        @DateTime.Now.Year <a href="/About/AboutMe/">Serhat Potur</a>
+    </div>
 
     <!-- End Contact Section -->
     <!-- Vendor JS Files -->

@@ -21,5 +21,7 @@ namespace SerhatPoturCV.Models.Entity
         public string Subject { get; set; }
         public string Message { get; set; }
         public Nullable<System.DateTime> MessageDate { get; set; }
+        public Nullable<bool> isRead { get; set; }
+        public Nullable<bool> isDeleted { get; set; }
     }
 }

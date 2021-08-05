@@ -13,7 +13,7 @@ namespace SerhatPoturCV.Controllers
 {
     public class AboutController : Controller
     {
-        string imgUrl;
+       
 
         AboutRepository aboutRepository = new AboutRepository(new SerhatPoturCVEntities());
         AboutValidator validations = new AboutValidator();
@@ -53,15 +53,16 @@ namespace SerhatPoturCV.Controllers
                     string _FileName = Path.GetFileName(file.FileName);
                     string randomFileName = string.Format(@"{0}.jpg", Guid.NewGuid());
                     string _path = Path.Combine(Server.MapPath("~/Images"), randomFileName);
-                    file.SaveAs(_path);
+
                     abouts.Image = "/Images/" + randomFileName;
+                    file.SaveAs(_path);
 
                 }
                 else
                 {
                     abouts.Image = "/Images/default.jpg";
                 }
-                imgUrl = abouts.Image;
+
                 aboutRepository.Add(abouts);
                 return RedirectToAction("AboutMe");
             }
@@ -84,24 +85,29 @@ namespace SerhatPoturCV.Controllers
         public ActionResult UpdateAbout(int id)
         {
             var about = aboutRepository.GetById(id);
+
             return View(about);
         }
         [HttpPost]
 
-        public ActionResult UpdateAbout(Abouts abouts, HttpPostedFileBase file)
+        public ActionResult UpdateAbout(Abouts abouts, HttpPostedFileBase file, string defaultImage)
         {
             ValidationResult results = validations.Validate(abouts);
             if (results.IsValid)
             {
+                //if (abouts.Image == null)
+                //{
+                //    abouts.Image = imgUrl;
+                //}
                 if (file != null && file.ContentLength > 0)
                 {
                     string _FileName = Path.GetFileName(file.FileName);
                     string randomFileName = string.Format(@"{0}.jpg", Guid.NewGuid());
                     string _path = Path.Combine(Server.MapPath("~/Images"), randomFileName);
-                    file.SaveAs(_path);
                     abouts.Image = "/Images/" + randomFileName;
+                    file.SaveAs(_path);
                 }
-                else
+                else if (file == null && abouts.Image == null)
                 {
                     abouts.Image = "/Images/default.jpg";
                 }

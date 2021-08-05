@@ -20,19 +20,24 @@
                     <div class="text-center">
                         @*img-fluid img-thumbnail img-circle w-25*@
                         @*~/Image/@Model.Image*@
-                        <img id="resim" class=" profile-user-img img-fluid img-circle  "
-                             src="@Model.Image"
-                             alt="User profile picture">
+
+                        <img id="Image" class=" profile-user-img img-fluid img-circle  "
+                             src="@Model.Image" alt="User Photo" />
+
+
                     </div>
                     <div class="text-center mb-2">
                         @*<input type="file" name="file" style="display:normal " class="fas fa-camera fa-2x" />*@
-                        <input style="display:none;" name="file" id="dosya" type="file" ClientIDMode="Static" onchange="$('#resim')[0].src = window.URL.createObjectURL(this.files[0])" CssClass="form-control" runat="server" />
+                        <input style="display:none;" name="file" id="dosya" type="file" ClientIDMode="Static" onchange="$('#Image')[0].src = window.URL.createObjectURL(this.files[0])" CssClass="form-control" runat="server" />
                         <label for="dosya"><i class="fas fa-camera fa-2x"></i></label>
+
+                       
+                    
 
                         @*<i class="fas fa-camera fa-2x"></i>*@
                     </div>
                 </div>
-
+                @Html.HiddenFor(m => m.Image)
 
                 <div class="float-right col-md-8">
 

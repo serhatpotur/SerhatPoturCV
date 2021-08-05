@@ -22,7 +22,7 @@ namespace SerhatPoturCV.Controllers
 
         public PartialViewResult AdminSidebar()
         {
-            var contact = contactRepository.GetList();
+            var contact = contactRepository.UnReadInbox();
             ViewBag.contactCount = contact.Count;
             return PartialView();
         }

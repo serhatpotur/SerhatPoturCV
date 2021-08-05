@@ -261,6 +261,7 @@
     <Content Include="themes\AdminLTE\dist\css\alt\adminlte.pages.min.css" />
     <Content Include="themes\AdminLTE\dist\css\alt\adminlte.plugins.css" />
     <Content Include="themes\AdminLTE\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="themes\AdminLTE\dist\css\showButton.css" />
     <Content Include="themes\AdminLTE\dist\img\2.png" />
     <Content Include="themes\AdminLTE\dist\img\4.png" />
     <Content Include="themes\AdminLTE\dist\img\AdminLTELogo.png" />
@@ -2114,6 +2115,7 @@
     <Content Include="themes\Personal\assets\img\bg.jpg" />
     <Content Include="themes\Personal\assets\img\bg1.jpg" />
     <Content Include="themes\Personal\assets\img\bg1home.jpg" />
+    <Content Include="themes\Personal\assets\img\bg2.jpg" />
     <Content Include="themes\Personal\assets\img\default.jpg" />
     <Content Include="themes\Personal\assets\img\favicon.png" />
     <Content Include="themes\Personal\assets\img\me.jpg" />
@@ -2598,6 +2600,9 @@
     <Content Include="themes\login\bootstrap\bootstrap.css.map" />
     <Content Include="themes\login\bootstrap\bootstrap.min.css.map" />
     <Content Include="Views\ErrorPage\Error404.cshtml" />
+    <Content Include="Views\Contact\ReadInboxList.cshtml" />
+    <Content Include="Views\Contact\ContactSidebar.cshtml" />
+    <Content Include="Views\Contact\DeletedMessagesList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

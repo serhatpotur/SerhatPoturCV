@@ -10,6 +10,19 @@ namespace SerhatPoturCV.Repositories
     {
         public ContactRepository(SerhatPoturCVEntities context) : base(context)
         {
+
+        }
+        public List<Contacts> UnReadInbox()
+        {
+            return _dbSet.Where(x => x.isRead == false && x.isDeleted == false).ToList();
+        }
+        public List<Contacts> ReadInbox()
+        {
+            return _dbSet.Where(x => x.isRead == true && x.isDeleted == false).ToList();
+        }
+        public List<Contacts> DeletedMessages()
+        {
+            return _dbSet.Where(x => x.isDeleted == true).ToList();
         }
     }
 }

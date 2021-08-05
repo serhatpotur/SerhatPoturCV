@@ -2,10 +2,23 @@
 @model List<Skills>
 
 
-@{ 
+@{
     var skillCount = Model.ToList();
-    var dgr = Convert.ToInt32(skillCount.Count / 2);
+    double newCount = skillCount.Count;
+    double dgr = Convert.ToDouble(newCount / 2);
+    dgr = Math.Ceiling(dgr);
+    int ydgr = Convert.ToInt32(dgr);
     var d2 = skillCount.Count;
+
+
+    // For döngüsü ile ilgili kısım
+    // var skillCount = Model.ToList();
+    // double newCount = skillCount.Count;
+    // double dgr = Convert.ToDouble(newCount / 2);
+
+    //dgr = Math.Ceiling(dgr);
+    //int ydgr = Convert.ToInt32(dgr);
+    //var d2 = skillCount.Count;
 }
 
 
@@ -20,7 +33,7 @@
 
         <div class="col-lg-6">
 
-            @for (int i = 0; i <= dgr; i++)
+            @for (int i = 0; i < dgr; i++)
             {
                 <div class="progress">
                     <span class="skill">@Model[i].SkillName <i class="val">@Model[i].SkillValue%</i></span>
@@ -33,7 +46,8 @@
 
         <div class="col-lg-6">
 
-            @for (int i = d2-1; i > dgr; i--)
+            @*@for (int i = d2 - 1; i > dgr; i--)*@
+            @for (int i = ydgr; i <= d2 - 1; i++)
             {
                 <div class="progress">
                     <span class="skill">@Model[i].SkillName <i class="val">@Model[i].SkillValue%</i></span>
@@ -42,7 +56,7 @@
                     </div>
                 </div>
             }
-        
+
         </div>
 
     </div>
