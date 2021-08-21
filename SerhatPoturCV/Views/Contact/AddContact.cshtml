@@ -1,4 +1,11 @@
 ﻿@model SerhatPoturCV.Models.Entity.Contacts
+@{
+    Layout = null;
+}
+
+
+ 
+
 <section id="contact" class="contact">
     <div class="container">
 
@@ -28,21 +35,22 @@
                     <p> @ViewBag.mail</p>
                 </div>
             </div>
-         
+
         </div>
-      
+
         @using (Html.BeginForm("AddContact", "Contact", FormMethod.Post, new { @class = " contact-from mt-4" }))
         {
+            @Html.ValidationSummary(true, "", new { @class = "text-white" })
             <div class="form-row">
                 <div class="col-md-6 form-group">
                     @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Your Name" })
-                   
+
                     <div class="validate">
                         @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="col-md-6 form-group">
-                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", placeholder = "Your Surname" }) 
+                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", placeholder = "Your Surname" })
                     <div class="validate">
                         @Html.ValidationMessageFor(x => x.Surname, "", new { @class = "text-danger" })
                     </div>
@@ -74,3 +82,4 @@
 
     </div>
 </section>
+

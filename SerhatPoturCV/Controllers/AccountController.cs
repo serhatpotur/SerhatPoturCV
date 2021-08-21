@@ -1,11 +1,15 @@
-﻿using SerhatPoturCV.Models.Entity;
+﻿
+using SerhatPoturCV.Models.Entity;
 using SerhatPoturCV.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using WebMatrix.WebData;
 
 namespace SerhatPoturCV.Controllers
 {
@@ -36,6 +40,10 @@ namespace SerhatPoturCV.Controllers
                 return View();
             }
         }
+
+       
+
+
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();

@@ -44,6 +44,7 @@
           <Property Name="MessageDate" Type="datetime" />
           <Property Name="isRead" Type="bit" />
           <Property Name="isDeleted" Type="bit" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="Skills">
           <Key>
@@ -112,6 +113,7 @@
           <Property Name="MessageDate" Type="DateTime" Precision="3" />
           <Property Name="isRead" Type="Boolean" />
           <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="Skills">
           <Key>
@@ -174,8 +176,6 @@
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="SerhatPoturCVModel.Contacts">
               <MappingFragment StoreEntitySet="Contacts">
-                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
-                <ScalarProperty Name="isRead" ColumnName="isRead" />
                 <ScalarProperty Name="ContactID" ColumnName="ContactID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -183,6 +183,9 @@
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+                <ScalarProperty Name="isRead" ColumnName="isRead" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

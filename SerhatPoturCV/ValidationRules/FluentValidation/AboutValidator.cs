@@ -11,15 +11,16 @@ namespace SerhatPoturCV.ValidationRules.FluentValidation
     {
         public AboutValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().MinimumLength(3).WithMessage("Adınız En Az 3 Karakter Olmalıdır");
-            RuleFor(x => x.Surname).NotEmpty().MinimumLength(2).WithMessage("Soydınız En Az 2 Karakter Olmalıdır");
-            RuleFor(x => x.Password).NotEmpty().MinimumLength(6).WithMessage("Şifreniz En Az 6 Karakter Olmalıdır");
-            RuleFor(x => x.Phone).NotEmpty().MinimumLength(10).MaximumLength(11).WithMessage("Geçersiz Telefon Numarası");
-            //RuleFor(x => x.Dateofbirth).Must(isBirth).WithMessage("Geçersiz Doğum Tarihi");
-            //RuleFor(x => x.Dateofbirth). MaximumLength(10).WithMessage("Geçersiz Doğum Tarihi");
-            //RuleFor(x => x.Dateofbirth.ToString()).MinimumLength(8).WithMessage("Geçersiz Doğum Tarihi");
+            RuleFor(x => x.Name).NotEmpty().WithMessage("Adınızı boş bırakamazsınız");
+            RuleFor(x => x.Name).MinimumLength(3).WithMessage("Adınız En Az 3 Karakter Olmalıdır");
+            RuleFor(x => x.Surname).NotEmpty().WithMessage("Soyadınızı boş bırakamazsınız");
+            RuleFor(x => x.Surname).MinimumLength(2).WithMessage("Soydınız En Az 2 Karakter Olmalıdır");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Şifrenizi boş bırakamazsınız");
+            RuleFor(x => x.Password).MinimumLength(6).WithMessage("Şifreniz En Az 6 Karakter Olmalıdır");
+            RuleFor(x => x.Phone).MinimumLength(10).MaximumLength(11).WithMessage("Geçersiz Telefon Numarası");
             RuleFor(x => x.Dateofbirth).NotEmpty().WithMessage("Doğum Tarihi Boş Bırakılamaz");
-            RuleFor(x => x.Mail).Must(isMail).WithMessage("Geçerli bir mail adresi giriniz");
+            RuleFor(x => x.Mail).EmailAddress().WithMessage("Geçerli bir mail adresi giriniz");
+            //RuleFor(x => x.Mail).Must(isMail).WithMessage("Geçerli bir mail adresi giriniz");
             RuleFor(x => x.Job).NotEmpty().WithMessage("Meslek Alanı Boş Bırakılamaz");
             RuleFor(x => x.Mail).NotEmpty().WithMessage("Mail Alanı Boş Bırakılamaz");
 

@@ -26,14 +26,15 @@ namespace SerhatPoturCV.Controllers
             ViewBag.contactCount = contact.Count;
             return PartialView();
         }
-     
-       
-       
-     
-       
       
-       
-       
-       
+
+
+
+
+
+
+
+
+
     }
 }

@@ -7,16 +7,19 @@ using System.Web.Mvc;
 using SerhatPoturCV.Models.Entity;
 using PagedList;
 using PagedList.Mvc;
+using SerhatPoturCV.ValidationRules.FluentValidation;
+using FluentValidation.Results;
 
 namespace SerhatPoturCV.Controllers
 {
     public class CareerController : Controller
     {
         CareerRepository careerRepository = new CareerRepository(new SerhatPoturCVEntities());
+        CareerValidator validations = new CareerValidator();
         // GET: Career
-        public ActionResult Index(int pageNumber=1)
+        public ActionResult Index(int pageNumber = 1)
         {
-            var careers = careerRepository.GetList().ToPagedList(pageNumber,5);
+            var careers = careerRepository.GetList().ToPagedList(pageNumber, 5);
             return View(careers);
         }
         [AllowAnonymous]
@@ -34,8 +37,21 @@ namespace SerhatPoturCV.Controllers
         [HttpPost]
         public ActionResult AddCareer(Careers career)
         {
-            careerRepository.Add(career);
-            return RedirectToAction("Index");
+            ValidationResult result = validations.Validate(career);
+            if (result.IsValid)
+            {
+                careerRepository.Add(career);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View();
+            }
+
         }
         [HttpGet]
         public ActionResult UpdateCareer(int id)
@@ -46,8 +62,21 @@ namespace SerhatPoturCV.Controllers
         [HttpPost]
         public ActionResult UpdateCareer(Careers career)
         {
-            careerRepository.Update(career);
-            return RedirectToAction("Index");
+            ValidationResult result = validations.Validate(career);
+            if (result.IsValid)
+            {
+                careerRepository.Update(career);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(career);
+            }
+
         }
         public ActionResult DeleteCareer(int id)
         {
@@ -55,7 +84,7 @@ namespace SerhatPoturCV.Controllers
             careerRepository.Delete(career);
             return RedirectToAction("Index");
         }
-        
+
 
     }
 }

@@ -18,21 +18,21 @@
 
     <!-- Favicons -->
     <link href="~/themes/Personal/assets/img/favicon.png" rel="icon">
-    <link href="~/themes/Personal/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+        <link href="~/themes/Personal/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+         <!--  Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
-    <link href="~/themes/Personal/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/themes/Personal/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-    <link href="~/themes/Personal/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="~/themes/Personal/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="~/themes/Personal/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="~/themes/Personal/assets/vendor/venobox/venobox.css" rel="stylesheet">
+         <!--  Vendor CSS Files -->
+        <link href="~/themes/Personal/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/themes/Personal/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+        <link href="~/themes/Personal/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+        <link href="~/themes/Personal/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="~/themes/Personal/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="~/themes/Personal/assets/vendor/venobox/venobox.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
-    <link href="~/themes/Personal/assets/css/cvstyle.css" rel="stylesheet">
+          <!-- Template Main CSS File -->
+        <link href="~/themes/Personal/assets/css/cvstyle.css" rel="stylesheet">
 
     <!-- =======================================================
     * Template Name: Personal - v2.3.0
@@ -51,7 +51,7 @@
 
             <h1><a href="/Home/Index/">@Model.Name @Model.Surname</a></h1>
 
-            <h2><span>Merhaba ! Kişisel Web Sayfama Hoşgeldiniz</span> </h2>
+            <h2><span>Merhaba ! Kişisel Web Sayfama Hoşgeldin</span> </h2>
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
@@ -64,22 +64,20 @@
             </nav><!-- .nav-menu -->
 
             <div class="social-links">
-
                 @Html.Action("MySocialMedia", "SocialMedia")
-
             </div>
 
         </div>
     </header>
 
     @Html.Action("MyAbout", "About")
-
     @Html.Action("WorkingHistory", "Career")
+    @Html.Action("AddContact", "Contact")
 
-    @Html.Action("ContactMe", "Contact")
+
     <div class="credits">
 
-        @DateTime.Now.Year <a href="/About/AboutMe/">Serhat Potur</a>
+        @DateTime.Now.Year <a href="#">Serhat Potur</a>
     </div>
 
     <!-- End Contact Section -->

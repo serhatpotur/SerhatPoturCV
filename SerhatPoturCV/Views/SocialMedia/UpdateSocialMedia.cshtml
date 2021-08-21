@@ -1,0 +1,50 @@
+﻿@model SerhatPoturCV.Models.Entity.SocialMedias
+@{
+    ViewBag.Title = "UpdateSocialMedia";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+    <div class="col-md-12 mt-3">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Sosyal Media Güncelle</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("UpdateSocialMedia", "SocialMedia", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(m => m.MediaID)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.MediaName, "Sosyal Medya Adı")
+                        @Html.TextBoxFor(m => m.MediaName, new { @class = "form-control", @placeholder = "Company's Name" })
+                        @Html.ValidationMessageFor(m => m.MediaName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.MediaLink, "Sosyal Medya Linki")
+                        @Html.TextBoxFor(m => m.MediaLink, new { @class = "form-control", @placeholder = "Your Company Position" })
+                        @Html.ValidationMessageFor(m => m.MediaLink, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.MediaClass, "Sosyal Medya Icon Classı")
+                        @Html.TextBoxFor(m => m.MediaClass, new { @class = "form-control", @placeholder = "Your Company Position" })
+                        @Html.ValidationMessageFor(m => m.MediaClass, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group float-right">
+
+                        <a href="/SocialMedia/Index/" class="btn btn-danger">Vazgeç</a>
+                        <input type="submit" value="Kaydet" class="btn btn-success">
+
+                    </div>
+                }
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>

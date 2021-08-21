@@ -14,18 +14,24 @@
             </div>
             @using (Html.BeginForm("AddSocialMedia", "SocialMedia", FormMethod.Post))
             {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="modal-body">
                     <div class="form-group">
                         @Html.Label("Sosyal Medya Adı", new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.MediaName, new {@placeholder="Instagram", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.MediaName, new { @placeholder = "Instagram", @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.MediaName, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.Label("Sosyal Medya Linki", new { @class = "control-label"})
+                        @Html.Label("Sosyal Medya Linki", new { @class = "control-label" })
                         @Html.TextBoxFor(m => m.MediaLink, new { @placeholder = "www.serhatpoturcv.com", @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.MediaLink, "", new { @class = "text-danger" })
+
                     </div>
                     <div class="form-group">
                         @Html.Label("Icon Class", new { @class = "control-label" })
-                        @Html.TextBoxFor(m => m.MediaClass, new {@placeholder= "icofont-instagram", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.MediaClass, new { @placeholder = "icofont-instagram", @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.MediaClass, "", new { @class = "text-danger" })
+
                     </div>
 
 

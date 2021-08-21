@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.AspNetCore.Identity.UI.5.0.9\build\Microsoft.AspNetCore.Identity.UI.props" Condition="Exists('..\packages\Microsoft.AspNetCore.Identity.UI.5.0.9\build\Microsoft.AspNetCore.Identity.UI.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -129,6 +130,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.7\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.7\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -188,6 +195,10 @@
     <Compile Include="Repositories\SkillRepository.cs" />
     <Compile Include="Repositories\SocialMediaRepository.cs" />
     <Compile Include="ValidationRules\FluentValidation\AboutValidator.cs" />
+    <Compile Include="ValidationRules\FluentValidation\CareerValidator.cs" />
+    <Compile Include="ValidationRules\FluentValidation\ContactValidator.cs" />
+    <Compile Include="ValidationRules\FluentValidation\SkillValidator.cs" />
+    <Compile Include="ValidationRules\FluentValidation\SocialMediaValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -201,6 +212,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\default.jpg" />
     <Content Include="Images\pp1.jpg" />
+    <Content Include="Images\res2.jpg" />
     <Content Include="Models\Entity\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -2603,6 +2615,10 @@
     <Content Include="Views\Contact\ReadInboxList.cshtml" />
     <Content Include="Views\Contact\ContactSidebar.cshtml" />
     <Content Include="Views\Contact\DeletedMessagesList.cshtml" />
+    <Content Include="Views\Contact\ReadMessageDetails.cshtml" />
+    <Content Include="Views\Contact\TrashMessageDetails.cshtml" />
+    <Content Include="Views\Contact\AddContact.cshtml" />
+    <Content Include="Views\SocialMedia\UpdateSocialMedia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2665,7 +2681,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.AspNetCore.Identity.UI.5.0.9\build\Microsoft.AspNetCore.Identity.UI.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.AspNetCore.Identity.UI.5.0.9\build\Microsoft.AspNetCore.Identity.UI.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.AspNetCore.Identity.UI.5.0.9\build\Microsoft.AspnetCore.Identity.UI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.AspNetCore.Identity.UI.5.0.9\build\Microsoft.AspnetCore.Identity.UI.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.AspNetCore.Identity.UI.5.0.9\build\Microsoft.AspnetCore.Identity.UI.targets" Condition="Exists('..\packages\Microsoft.AspNetCore.Identity.UI.5.0.9\build\Microsoft.AspnetCore.Identity.UI.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

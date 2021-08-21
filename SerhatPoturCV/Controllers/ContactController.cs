@@ -5,12 +5,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SerhatPoturCV.Models.Entity;
+using SerhatPoturCV.ValidationRules.FluentValidation;
+using FluentValidation.Results;
+
 namespace SerhatPoturCV.Controllers
 {
     public class ContactController : Controller
     {
         ContactRepository contactRepository = new ContactRepository(new SerhatPoturCVEntities());
         AboutRepository aboutRepository = new AboutRepository(new SerhatPoturCVEntities());
+        ContactValidator validations = new ContactValidator();
         // GET: Contact
 
 
@@ -19,7 +23,7 @@ namespace SerhatPoturCV.Controllers
             var contact = contactRepository.UnReadInbox();
             if (!String.IsNullOrEmpty(search))
             {
-                contact = contact.Where(x => x.Name.Contains(search) || x.Surname.Contains(search) || x.Subject.Contains(search) || x.Message.Contains(search) || x.Mail.Contains(search)).OrderBy(x=>x.MessageDate).ToList();
+                contact = contact.Where(x => x.Name.Contains(search) || x.Surname.Contains(search) || x.Subject.Contains(search) || x.Message.Contains(search) || x.Mail.Contains(search)).OrderBy(x => Convert.ToDateTime(x.MessageDate)).ToList();
             }
 
             return View(contact);
@@ -56,6 +60,13 @@ namespace SerhatPoturCV.Controllers
             contactRepository.Update(message);
             return RedirectToAction("Index");
         }
+        public ActionResult RestoreMessage(int id)
+        {
+            var message = contactRepository.GetById(id);
+            message.isDeleted = false;
+            contactRepository.Update(message);
+            return RedirectToAction("Index");
+        }
         public PartialViewResult ContactSidebar()
         {
             var readmessage = contactRepository.ReadInbox().Count;
@@ -68,10 +79,12 @@ namespace SerhatPoturCV.Controllers
             return PartialView();
         }
         [AllowAnonymous]
-        public PartialViewResult ContactMe()
+
+        public PartialViewResult ContactMe(Contacts contacts)
         {
             var mail = aboutRepository.GetEntity();
             ViewBag.mail = mail.Mail;
+
             return PartialView();
         }
         public ActionResult ContactDetails(int id)
@@ -79,41 +92,57 @@ namespace SerhatPoturCV.Controllers
             var contact = contactRepository.GetById(id);
             return View(contact);
         }
+        public ActionResult ReadMessageDetails(int id)
+        {
+            var contact = contactRepository.GetById(id);
+            return View(contact);
+        }
+        public ActionResult TrashMessageDetails(int id)
+        {
+            var contact = contactRepository.GetById(id);
+            return View(contact);
+        }
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult AddContact()
         {
-
+            var mail = aboutRepository.GetEntity();
+            ViewBag.mail = mail.Mail;
             return View();
         }
         [HttpPost]
-
+        [AllowAnonymous]
         public ActionResult AddContact(Contacts contacts)
         {
-            contacts.MessageDate = DateTime.Now;
-            contacts.isDeleted = false;
-            contacts.isRead = false;
-            contactRepository.Add(contacts);
 
-            return RedirectToAction("Index", "Home");
+
+            if (ModelState.IsValid)
+            {
+                contacts.MessageDate = DateTime.Now;
+                contacts.isRead = false;
+                contacts.isDeleted = false;
+                contacts.isActive = true;
+
+                contactRepository.Add(contacts);
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+
+
+
         }
         public ActionResult DeleteContact(int id)
         {
             var contacts = contactRepository.GetById(id);
-            contactRepository.Delete(contacts);
-            return RedirectToAction("Index");
-        }
-        [HttpGet]
-        public ActionResult UpdateContact(int id)
-        {
-            var contacts = contactRepository.GetById(id);
-            return View(contacts);
-        }
-        [HttpPost]
-
-        public ActionResult UpdateContact(Contacts contacts)
-        {
+            contacts.isActive = false;
+            contacts.isDeleted = false;
             contactRepository.Update(contacts);
             return RedirectToAction("Index");
         }
+
     }
 }

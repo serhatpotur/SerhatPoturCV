@@ -90,15 +90,12 @@ namespace SerhatPoturCV.Controllers
         }
         [HttpPost]
 
-        public ActionResult UpdateAbout(Abouts abouts, HttpPostedFileBase file, string defaultImage)
+        public ActionResult UpdateAbout(Abouts abouts, HttpPostedFileBase file)
         {
             ValidationResult results = validations.Validate(abouts);
             if (results.IsValid)
             {
-                //if (abouts.Image == null)
-                //{
-                //    abouts.Image = imgUrl;
-                //}
+                
                 if (file != null && file.ContentLength > 0)
                 {
                     string _FileName = Path.GetFileName(file.FileName);
@@ -120,7 +117,7 @@ namespace SerhatPoturCV.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View("UpdateAbout");
+                return View(abouts);
             }
 
         }

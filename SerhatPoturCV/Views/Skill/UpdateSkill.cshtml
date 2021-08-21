@@ -3,16 +3,48 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@*<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Yetenek Girişi</button>*@
-@*<a href="/Skill/UpdateSkillPartial" data-toggle="modal" data-target="#Modal1">
-        <i class="fa fa-pencil-alt 2x"></i>
-    </a>*@
-<a class="btn btn-info btn-sm" href="/Skill/UpdateSkill/@Model.SkillID" data-toggle="modal" data-target="#Modal1">
-    <i class="fas fa-pencil-alt">
-    </i>
+    <div class="col-md-12 mt-3">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Yetenek Güncelle</h3>
 
-</a>
-<div class="modal" id="Modal1">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("UpdateSkill", "Skill", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(m=>m.SkillID)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SkillName, "Yetenek Adı")
+                        @Html.TextBoxFor(m => m.SkillName, new { @class = "form-control", @placeholder = "Company's Name" })
+                        @Html.ValidationMessageFor(m => m.SkillName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SkillValue, "Yetenek Yüzdesi")
+                        @Html.TextBoxFor(m => m.SkillValue, new { @class = "form-control", @placeholder = "Your Company Position" })
+                        @Html.ValidationMessageFor(m => m.SkillValue, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group float-right">
+
+                        <a href="/Skill/Index/" class="btn btn-danger">Vazgeç</a>
+                        <input type="submit" value="Güncelle" class="btn btn-success">
+
+                    </div>
+                }
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+
+
+@*<div class="modal" id="Modal1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
@@ -40,7 +72,7 @@
             }
         </div>
     </div>
-</div>
+</div>*@
 
 
 

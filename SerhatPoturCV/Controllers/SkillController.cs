@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using FluentValidation.Results;
+using Newtonsoft.Json;
 using SerhatPoturCV.Models.Entity;
 using SerhatPoturCV.Repositories;
+using SerhatPoturCV.ValidationRules.FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace SerhatPoturCV.Controllers
     public class SkillController : Controller
     {
         SkillRepository skillRepository = new SkillRepository(new SerhatPoturCVEntities());
+        SkillValidator validations = new SkillValidator();
         // GET: About
         public ActionResult Index()
         {
@@ -28,8 +31,21 @@ namespace SerhatPoturCV.Controllers
 
         public ActionResult AddSkill(Skills skills)
         {
-            skillRepository.Add(skills);
-            return RedirectToAction("Index");
+            ValidationResult result = validations.Validate(skills);
+            if (result.IsValid)
+            {
+                skillRepository.Add(skills);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View();
+            }
+
         }
 
         public ActionResult AddSkillPartial()
@@ -44,7 +60,7 @@ namespace SerhatPoturCV.Controllers
 
             return PartialView(skill);
         }
-       
+
         public ActionResult DeleteSkill(int id)
         {
             var skill = skillRepository.GetById(id);
@@ -61,8 +77,20 @@ namespace SerhatPoturCV.Controllers
 
         public ActionResult UpdateSkill(Skills skills)
         {
-            skillRepository.Update(skills);
-            return RedirectToAction("Index");
+            ValidationResult result = validations.Validate(skills);
+            if (result.IsValid)
+            {
+                skillRepository.Update(skills);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View();
+            }
         }
         [AllowAnonymous]
         public PartialViewResult MySkills()
